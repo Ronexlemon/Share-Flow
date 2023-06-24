@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'bgbank': "url('../src/assets/Defibg.png')",
+        'bgbank': "url('../src/assets/defibg.webp')",
        
       }
     },
