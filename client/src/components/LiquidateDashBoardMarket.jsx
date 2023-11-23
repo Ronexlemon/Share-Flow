@@ -131,7 +131,7 @@ const LiquidateDashBoardCardMarket = () => {
              key={element._poolId}
              className="ml-32 mb-4 w-3/4 p-6 border bg-[#FFFFFF] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
            >
-            <div className="flex justify-between items-center mb-10">
+            <div className="flex justify-between items-center mb-2">
             {/* <p ><span className="text-slate-300">{(element.borrower).substring(0,8)}...{(element.borrower).substring(9,17)}</span> </p> */}
             <h2>Borrower Address</h2>
             <p ><span className="text-[#2C2C2C]">{element.borrower}</span> </p>
