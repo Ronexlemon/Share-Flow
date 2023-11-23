@@ -23,16 +23,16 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="h-10 w-full bg-zinc-400 flex justify-around items-center">
-      <button onClick={()=>{navigate("/home")}} className="animate-pulse text-indigo-700">SHAREFLOW</button>
+    <nav className="h-10 w-full bg-[#2C2C2C] flex justify-around items-center ">
+      <button onClick={()=>{navigate("/home")}} className="animate-pulse text-[#FFFFFF]">Home</button>
       <div className="flex justify-around gap-8 items-center">
-         <button onClick={()=>{navigate("/market")}} className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Market</button>
+         <button onClick={()=>{navigate("/market")}} className="inline-flex justify-center w-full rounded-md  text-[#FFFFFF] shadow-sm px-4 py-2 text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Market</button>
         <div className="relative inline-block text-left">
            
           <button
             onClick={toggleDropdown}
             type="button"
-            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center w-full rounded-md  text-[#FFFFFF] shadow-sm px-4 py-2 text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             id="dashboard-dropdown"
             aria-haspopup="true"
             aria-expanded={showDropdown}
@@ -53,12 +53,12 @@ const NavBar = () => {
           </button>
           {showDropdown && (
             <div
-              className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-gray-400 ring-1 ring-black ring-opacity-5 focus:outline-none"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="dashboard-dropdown"
             >
-              <div className="py-1" role="none">
+              <div className="py-1 " role="none">
                 <button
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
@@ -81,7 +81,7 @@ const NavBar = () => {
         
         <ConnectButton label="Connect" chainStatus="icon"  showBalance={{
     smallScreen: false,
-    largeScreen: true,
+    largeScreen: false,
   }}  />
       </div>
     </nav>

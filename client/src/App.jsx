@@ -20,24 +20,40 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { fantomTestnet } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
-const { chains, publicClient } = configureChains(
-  [fantomTestnet],
-  [
-    // alchemyProvider({ apiKey: "ronex" }),
-    publicProvider()
-  ]
-);
+import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 
-const { connectors } = getDefaultWallets({
+const projectId = "f9983854a629f1241a87ff64eba87ad8"
+// const { chains, publicClient } = configureChains(
+//   [fantomTestnet],
+//   [
+//     // alchemyProvider({ apiKey: "ronex" }),
+//     publicProvider()
+//   ]
+// );
+
+// const { connectors } = getDefaultWallets({
   
-  chains
-});
+//   chains
+// });
 
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient
-})
+// const wagmiConfig = createConfig({
+//   autoConnect: true,
+//   connectors,
+//   publicClient
+// })
+// 2. Create wagmiConfig
+const metadata = {
+  name: 'Web3Modal',
+  description: 'Web3Modal Example',
+  url: 'https://web3modal.com',
+  icons: ['https://avatars.githubusercontent.com/u/37784886']
+}
+
+const chains = [fantomTestnet]
+const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
+
+// 3. Create modal
+createWeb3Modal({ wagmiConfig, projectId, chains })
 
 
 function App() {
