@@ -52,6 +52,7 @@ contract ShareFlow is Ownable, ReentrancyGuard {
         address tokenAddressToBorrow;
         address tokenAddressForCollateral;
         bool lended;
+        uint _poolId;
     }
     struct DashBoard {
         address borrower;
@@ -61,6 +62,7 @@ contract ShareFlow is Ownable, ReentrancyGuard {
         address collateralAddressToken;
         address tokenBorrowedAddress;
         uint _profit;
+        uint _poolId;
     }
     uint requestIndex;
     mapping(uint => Information) public l_createRequest;
@@ -98,7 +100,8 @@ contract ShareFlow is Ownable, ReentrancyGuard {
             _interest,
             _tokenAddressToBorrow,
             _tokenAddressForCollateral,
-            false
+            false,
+            _requestIndex
         );
         IERC20(_tokenAddressForCollateral).transferFrom(
             msg.sender,
@@ -134,7 +137,8 @@ contract ShareFlow is Ownable, ReentrancyGuard {
             info.interest,
             info.tokenAddressToBorrow,
             info.tokenAddressForCollateral,
-            true
+            true,
+            _index
         );
 
         l_createRequest[_index] = updatedInfo; // Replace the existing struct with the updated struct
@@ -147,7 +151,8 @@ contract ShareFlow is Ownable, ReentrancyGuard {
             info.collateralAmount,
             info.tokenAddressForCollateral,
             info.tokenAddressToBorrow,
-            info.interest
+            info.interest,
+            _requestDash
         );
         requestDash = requestDash.add(1);
         emit lendout(msg.sender, info.userRequest, info.tokenAmountToBorrow);
