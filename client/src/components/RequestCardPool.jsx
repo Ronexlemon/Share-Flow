@@ -304,7 +304,7 @@ setTimeout(() => {
             <h2>
               Status
             </h2>
-            <p className="">{!element.lended? <h2 className="text-green-600">Requested</h2>:<h2 className="text-red-600">Lended</h2>}</p>
+            <p className="">{!element.lended? <h2 className="text-green-600">Open</h2>:<h2 className="text-red-600">Closed</h2>}</p>
           </div>
         </div>
                   

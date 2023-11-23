@@ -139,18 +139,18 @@ const LiquidateDashBoardCardMarket = () => {
             <div className="flex justify-between mr-20">
                 <div>
                     <h2>Loan</h2>
-                    <p className="text-green-400 "><span className="mr-2">{Number(element.tokenBorrowed)/10**18}</span>Matic </p>
+                    <p className="text-green-400 "><span className="mr-2">{Number(element.tokenBorrowed)/10**18}</span>CELO </p>
                 </div>
                 <div className="flex flex-col items-center gap-2">
                     <h2>Collateral</h2>
                     <p className="text-red-400"><span className=" mr-2">{Number(element.collateral
-)/10**18}</span> Link</p>
+)/10**18}</span> cUSD</p>
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center mr-20">
             <h2>Interest</h2> 
             <p className="text-green-400"><span className=" mr-2">{Number(element._profit
-)/10**18}</span> Matic</p>
+)/10**18}</span> CELO</p>
             </div>
              
               

@@ -142,7 +142,7 @@ const RepayDashBoardCardMarket = () => {
         <div className="flex   justify-between items-center mr-10">
           <div className="flex flex-col items-center gap-2">
             <h2>Loan</h2>
-            <p  className="text-green-500 "><span className="mr-2">{Number(element.tokenAmountToBorrow)/10**18}</span>Matic  </p>
+            <p  className="text-green-500 "><span className="mr-2">{Number(element.tokenAmountToBorrow)/10**18}</span>CELO  </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <h2 className="text-red-400">Deadline</h2>
@@ -151,7 +151,7 @@ const RepayDashBoardCardMarket = () => {
           <div className="flex flex-col items-center gap-2">
             <h2>Interest</h2>
             <p className="text-green-500"><span className=" mr-2">{Number(element.interest
-)/10**18}</span> Matic</p>
+)/10**18}</span>CELO</p>
           </div>
         </div>
         <div className="flex justify-between mr-20">
@@ -159,13 +159,13 @@ const RepayDashBoardCardMarket = () => {
             <h2>
               Collateral
             </h2>
-            <p className="text-red-300 "><span className="mr-2">{Number(element.collateralAmount)/10**18}</span> Link </p>
+            <p className="text-red-300 "><span className="mr-2">{Number(element.collateralAmount)/10**18}</span> cUSD </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <h2>
               Status
             </h2>
-            <p className="">{!element.lended? <h2 className="text-green-600">Requested</h2>:<h2 className="text-red-600">Lended</h2>}</p>
+            <p className="">{!element.lended? <h2 className="text-red-600">Inactive</h2>:<h2 className="text-green-600">Active</h2>}</p>
           </div>
         </div>
               
