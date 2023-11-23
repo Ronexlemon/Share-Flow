@@ -17,7 +17,7 @@ import {
   darkTheme
 } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { fantomTestnet } from 'wagmi/chains';
+import { celoAlfajores, fantomTestnet } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
@@ -49,7 +49,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
-const chains = [fantomTestnet]
+const chains = [celoAlfajores]
 const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
 
 // 3. Create modal

@@ -18,10 +18,10 @@ const RequestCardPool = () => {
   const [tokenAmount,setTokenAmount] = useState();
   const [collateralAmount,setCollateralAmount] = useState();
   const [interestAmount,setInterestAmount] = useState();
-  const fantom = "0xf7017d9089e6a35351a6fb0ed709333e533cbe3c";
-  const FantomPricefeed = "0xe04676B9A9A2973BCb0D1478b5E1E9098BBB7f3D"
-  const link = "0xfaFedb041c0DD4fA2Dc0d87a6B0979Ee6FA7af5F";
-  const linkPriceFeed = "0x6d5689Ad4C1806D1BA0c70Ab95ebe0Da6B204fC5"
+  const fantom = "0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9";//celo
+  const FantomPricefeed = "0x022F9dCC73C5Fb43F2b4eF2EF9ad3eDD1D853946" //celoPriceFeed
+  const link = "0x874069fa1eb16d44d622f2e0ca25eea172369bc1" //link"0x32E08557B14FaD8908025619797221281D439071"; //cusd /link
+  const linkPriceFeed = "0x642Abc0c069dC5041dEA5bFC155D38D844779274" //link"0x9E4e3D77b0302e93dA68633Ad370E3e8C9D84eea" //cusd//linkPriceFeed
   const usdcPriceFeed = "0x572dDec9087154dC5dfBB1546Bb62713147e0Ab0"
   //
   //approve fantom to loan out
@@ -161,17 +161,17 @@ const RequestCardPool = () => {
   };  
   
 
-  const [selectedOptionCollateral, setSelectedOptionCollateral] = useState('LINK'); // Initialize the state with an empty string
+  const [selectedOptionCollateral, setSelectedOptionCollateral] = useState('cUSD'); // Initialize the state with an empty string
 
   const handleOptionChangeCollateral = (event) => {
     setSelectedOptionCollateral(event.target.value); // Update the state with the selected option value
   };
-  const [selectedOptionToken, setSelectedOptionToken] = useState('FTM'); // Initialize the state with an empty string
+  const [selectedOptionToken, setSelectedOptionToken] = useState('CELO'); // Initialize the state with an empty string
 
   const handleOptionChangeToken = (event) => {
     setSelectedOptionToken(event.target.value); // Update the state with the selected option value
   };
-  const [selectedOptionInterest, setSelectedOptionInterest] = useState('FTM'); // Initialize the state with an empty string
+  const [selectedOptionInterest, setSelectedOptionInterest] = useState('CELO'); // Initialize the state with an empty string
 
   const handleOptionChangeInterest = (event) => {
     setSelectedOptionInterest(event.target.value); // Update the state with the selected option value
@@ -274,7 +274,7 @@ setTimeout(() => {
         
           {requests?.map((element, index) => (
             <div
-              key={index}
+              key={element._poolId}
               className="ml-32 mb-4 w-3/4 p-6 border bg-[#FFFFFF] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
               <div className="flex   justify-between items-center mr-10">
@@ -298,7 +298,7 @@ setTimeout(() => {
             <h2>
               Collateral
             </h2>
-            <p className="text-red-300 "><span className="mr-2">{Number(element.collateralAmount)/10**18}</span> Link </p>
+            <p className="text-red-300 "><span className="mr-2">{Number(element.collateralAmount)/10**18}</span> cUSD </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <h2>
@@ -312,7 +312,7 @@ setTimeout(() => {
              
               
               <div className="flex justify-end items-center ">
-              <button onClick={()=>{handleLending(index,element.tokenAmountToBorrow)}} className="border text-[#FFFFFF] bg-[#0D46D7] w-20  rounded-md">Lend</button>
+              <button onClick={()=>{handleLending(element._poolId,element.tokenAmountToBorrow)}} className="border text-[#FFFFFF] bg-[#0D46D7] w-20  rounded-md">Lend</button>
               </div>
               
             </div>
@@ -330,7 +330,7 @@ setTimeout(() => {
           <div className="grid grid-cols-3 gap-2 items-center">
             <span>Loan</span>
             <select value={selectedOptionToken} onChange={handleOptionChangeToken}>
-        <option value="FTM">FTM</option>
+        <option value="CELO">CELO</option>
         <option value="USDC">USDC</option>
       </select>
             <input placeholder="amount" className="border border-gray-400 text-center w-28" type="text" onChange={(e)=>{setTokenAmount( ethers.parseEther(e.target.value))}}/>
@@ -340,7 +340,7 @@ setTimeout(() => {
           <div className="grid grid-cols-3 gap-2 items-center">
             <span className="">Collateral</span>
             <select value={selectedOptionCollateral} onChange={handleOptionChangeCollateral}>
-        <option value="LINK">LINK</option>
+        <option value="cUSD">cUSD</option>
         <option value="USDC">USDC</option>
       </select>
             <input placeholder="Amount"  className="border border-gray-400  text-center w-28" type="text" onChange={(e)=>{setCollateralAmount(ethers.parseEther(e.target.value))}}/>
@@ -348,7 +348,7 @@ setTimeout(() => {
           <div className="grid grid-cols-3 gap-2 items-center">
             <span>Interest</span>
             <select value={selectedOptionInterest} onChange={handleOptionChangeInterest}>
-        <option value="FTM">FTM</option>
+        <option value="CELO">CELO</option>
         <option value="USDC">USDC</option>
       </select>
             <input placeholder="amount" className="border border-gray-400 text-center w-28" type="text"  onChange={(e)=>{setInterestAmount(ethers.parseEther(e.target.value))}}/>

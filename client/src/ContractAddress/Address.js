@@ -1,1 +1,1 @@
-export const LendingYieldContract  = "0x8baCA7C2B1b0d82238Ca0097e1980498d10ced36"
+export const LendingYieldContract  = "0x25BfC308265BED32B626d384Ea6a0D68b101eEE0" //celo1"0xeB642cD449205569AA6cb5519D6Cb872CDcb2A60" //fantom"0x8baCA7C2B1b0d82238Ca0097e1980498d10ced36"

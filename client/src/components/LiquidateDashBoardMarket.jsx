@@ -128,7 +128,7 @@ const LiquidateDashBoardCardMarket = () => {
         
           {requests?.map((element, index) => (
              <div
-             key={index}
+             key={element._poolId}
              className="ml-32 mb-4 w-3/4 p-6 border bg-[#FFFFFF] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
            >
             <div className="flex justify-between items-center mb-10">
@@ -158,7 +158,7 @@ const LiquidateDashBoardCardMarket = () => {
               
             
               <div className="flex justify-end items-center ">
-              <button onClick={()=>{handleLiquidate(index)}} className="border text-[#FFFFFF] bg-[#0D46D7] w-24  rounded-md">Liquidate</button>
+              <button onClick={()=>{handleLiquidate(element._poolId)}} className="border text-[#FFFFFF] bg-[#0D46D7] w-24  rounded-md">Liquidate</button>
               </div>
               
             </div>
