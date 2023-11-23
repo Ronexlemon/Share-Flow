@@ -26,7 +26,7 @@ const NavBar = () => {
     <nav className="h-10 w-full bg-[#2C2C2C] flex justify-around items-center ">
       <button onClick={()=>{navigate("/home")}} className="animate-pulse text-[#FFFFFF]">Home</button>
       <div className="flex justify-around gap-8 items-center">
-         <button onClick={()=>{navigate("/market")}} className="inline-flex justify-center w-full rounded-md  text-[#FFFFFF] shadow-sm px-4 py-2 text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Market</button>
+         <button onClick={()=>{navigate("/market")}} className="inline-flex justify-center w-full rounded-md  text-[#FFFFFF] shadow-sm px-4 py-2 text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">LoanPool</button>
         <div className="relative inline-block text-left">
            
           <button
