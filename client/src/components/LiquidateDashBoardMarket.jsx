@@ -5,6 +5,9 @@ import { useContractWrite,useContractRead } from "wagmi";
 import LendingAbi from "../Abis/LendingV2.json";
 import { useWalletClient } from "wagmi";
 import { useAccount } from "wagmi";
+import ToastIT from "./Toast";
+import { ToastContainer } from "react-toastify";
+import ToastError from "./ToastError";
 
 const LiquidateDashBoardCardMarket = () => {
   const [indexValue,setIndexValue] = useState();
@@ -71,9 +74,15 @@ const LiquidateDashBoardCardMarket = () => {
   };
 
   const handleSendRequest = async () => {
-    await  confirmLiquidation();
-    // Logic for sending the request
-    setShowModal(false);
+    try{
+      await  confirmLiquidation();
+      // Logic for sending the request
+      setShowModal(false);
+      ToastIT("Liquidating ...",true);
+    }catch(error){
+      ToastError("Wait for Duration to End!",false);
+    }
+    
   };
 
   const handleCancelRequest =  () => {
@@ -120,7 +129,7 @@ const LiquidateDashBoardCardMarket = () => {
   return (
     <div className=" min-h-full h-screen w-full bg-[#2C2C2C] relative  items-center mt-20 ">
       
-      
+      <ToastContainer/>
 
        
     

@@ -23,24 +23,25 @@ import { publicProvider } from 'wagmi/providers/public';
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 
 const projectId = "f9983854a629f1241a87ff64eba87ad8"
-// const { chains, publicClient } = configureChains(
-//   [fantomTestnet],
-//   [
-//     // alchemyProvider({ apiKey: "ronex" }),
-//     publicProvider()
-//   ]
-// );
+const { chains, publicClient } = configureChains(
+  [celoAlfajores],
+  [
+    // alchemyProvider({ apiKey: "ronex" }),
+    publicProvider()
+  ]
+);
 
-// const { connectors } = getDefaultWallets({
+const { connectors } = getDefaultWallets({
   
-//   chains
-// });
+  chains,
+  projectId
+});
 
-// const wagmiConfig = createConfig({
-//   autoConnect: true,
-//   connectors,
-//   publicClient
-// })
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors,
+  publicClient
+})
 // 2. Create wagmiConfig
 const metadata = {
   name: 'Web3Modal',
@@ -49,8 +50,8 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
-const chains = [celoAlfajores]
-const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
+// const chains = [celoAlfajores]
+// const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
 
 // 3. Create modal
 createWeb3Modal({ wagmiConfig, projectId, chains })

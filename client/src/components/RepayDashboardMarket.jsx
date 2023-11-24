@@ -5,6 +5,9 @@ import LendingAbi from "../Abis/LendingV2.json"
 import {useContractWrite,useContractRead} from "wagmi"
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
+import ToastIT from "./Toast";
+import { ToastContainer } from "react-toastify";
+import ToastError from "./ToastError";
 
 const RepayDashBoardCardMarket = () => {
   const {address,isConnected} = useAccount()
@@ -64,17 +67,37 @@ const RepayDashBoardCardMarket = () => {
   ];
 
   const handleRepay = (_index,_amount,_interest) => {
-    const totalAmount = (_amount + _interest)/10**18;
+    // const totalAmount = ( _amount + _interest)/10**18;
+    // setIndex(_index);
+    // setAmount(ethers.parseEther(totalAmount.toString()));
+    // setShowModal(true);
+    // Convert _amount and _interest from parseEther to formatEther
+    const amountInEther = ethers.formatEther(_amount);
+    const interestInEther =  ethers.formatEther(_interest);
+
+    // Add _amount and _interest
+    const totalAmountInEther = parseFloat(amountInEther) + parseFloat(interestInEther);
+
+    // Convert totalAmount back to parseEther
+    const totalAmountInWei = ethers.parseEther(totalAmountInEther.toString());
+
     setIndex(_index);
-    setAmount(ethers.parseEther(totalAmount.toString()));
+    setAmount(totalAmountInWei);
     setShowModal(true);
   };
 
   const handleSendRequest = async () => {
     // Logic for sending the request
-    await confirmRepayment()
+    try{
+      await confirmRepayment()
     
-    setShowModal(false);
+      setShowModal(false);
+      ToastIT("Repaying ...")
+    }catch(error){
+      ToastError("already Liquidated")
+      
+    }
+    
   };
 
   const handleCancelRequest = () => {
@@ -111,7 +134,7 @@ const RepayDashBoardCardMarket = () => {
 
   return (
     <div className=" min-h-full h-screen w-full bg-[#2C2C2C] relative  items-center mt-20 ">
-      
+      <ToastContainer/>
        
 
         {/* <div className="text-white  flex justify-evenly">

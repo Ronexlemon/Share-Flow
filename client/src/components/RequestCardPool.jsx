@@ -5,8 +5,11 @@ import {ethers} from "ethers"
 import { LendingYieldContract } from "../ContractAddress/Address";
 import LendingAbi from "../Abis/LendingV2.json"
 import IERC20 from "../Abis/IERC20.json"
+import ToastIT from "./Toast";
+import { ToastContainer } from "react-toastify";
 
 const RequestCardPool = () => {
+const [toasttoggole,setToastToggle] = useState(false);
   const details = [{loan:1,collateralAmount:2,tokenAmountToBorrow:2000,duration:234566,lended:false}]
   const [request, setRequest] = useState(false);
   const [hidebutton,setHide] = useState(true);
@@ -25,6 +28,11 @@ const RequestCardPool = () => {
   const usdcPriceFeed = "0x572dDec9087154dC5dfBB1546Bb62713147e0Ab0"
   //
   //approve fantom to loan out
+  //toast
+  const getToast =(message)=>{
+    ToastIT(message);
+
+  }
   const {
         
     writeAsync: approveloan
@@ -203,11 +211,18 @@ const RequestCardPool = () => {
   const handleLendSend =async()=>{
    await  confirmLending();
     setShowLendingModal(false);
+    ToastIT("Lending ...",true);
   }
   const handleApproveRequest = async()=>{
-await approve();
+    
+      ToastIT("Approving...",false);
+    
+   
+     await approve();
 setTimeout(() => {
   setHide(false);
+  ToastIT("Done",true);
+  
 }, 5000);
   }
 
@@ -217,6 +232,7 @@ setTimeout(() => {
     
 
     setShowModal(false);
+    ToastIT("Confirmed Successively",true);
   };
 
   const handleCancelRequest = () => {
@@ -262,6 +278,7 @@ setTimeout(() => {
   return (
     <div className=" min-h-full h-screen w-full bg-[#2C2C2C] relative  items-center mt-20">
        <div className="flex justify-end items-end mr-40">
+        <ToastContainer/>
           <button className="text-white  rounded-sm"  onClick={handleCreateRequest}>
           <i className=" text-blue-700" >create Loan Request</i>
           </button>
