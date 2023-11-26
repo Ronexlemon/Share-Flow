@@ -8,6 +8,7 @@ import { ethers } from "ethers";
 import ToastIT from "./Toast";
 import { ToastContainer } from "react-toastify";
 import ToastError from "./ToastError";
+//import { toToastItem } from "react-toastify/dist/utils";
 
 const RepayDashBoardCardMarket = () => {
   const {address,isConnected} = useAccount()
@@ -67,23 +68,28 @@ const RepayDashBoardCardMarket = () => {
   ];
 
   const handleRepay = (_index,_amount,_interest) => {
-    // const totalAmount = ( _amount + _interest)/10**18;
-    // setIndex(_index);
-    // setAmount(ethers.parseEther(totalAmount.toString()));
-    // setShowModal(true);
-    // Convert _amount and _interest from parseEther to formatEther
-    const amountInEther = ethers.formatEther(_amount);
-    const interestInEther =  ethers.formatEther(_interest);
+    console.log("_amount",_amount);
+    console.log("_interest",_interest);
 
-    // Add _amount and _interest
-    const totalAmountInEther = parseFloat(amountInEther) + parseFloat(interestInEther);
-
-    // Convert totalAmount back to parseEther
-    const totalAmountInWei = ethers.parseEther(totalAmountInEther.toString());
-
+    const totalAmount = ( Number(_amount) + Number(_interest))/10**18;
     setIndex(_index);
-    setAmount(totalAmountInWei);
+    setAmount(ethers.parseEther(totalAmount.toString()));
     setShowModal(true);
+    console.log("total amount s",totalAmount);
+    console.log("_index is",_index);
+    // Convert _amount and _interest from parseEther to formatEther
+    // const amountInEther = ethers.formatEther(_amount);
+    // const interestInEther =  ethers.formatEther(_interest);
+
+    // // Add _amount and _interest
+    // const totalAmountInEther = parseFloat(amountInEther) + parseFloat(interestInEther);
+
+    // // Convert totalAmount back to parseEther
+    // const totalAmountInWei = ethers.parseEther(totalAmountInEther.toString());
+
+    // setIndex(_index);
+    // setAmount(totalAmountInWei);
+    // setShowModal(true);
   };
 
   const handleSendRequest = async () => {
@@ -149,7 +155,7 @@ const RepayDashBoardCardMarket = () => {
         
           {requests?.map((element, index) => (
             <div
-              key={index}
+              key={element._poolId}
               className="ml-32 mb-4 w-3/4 p-6 border bg-[#FFFFFF] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
               {/* address userRequest;
@@ -162,7 +168,7 @@ const RepayDashBoardCardMarket = () => {
         address tokenAddressToBorrow;
         address tokenAddressForCollateral;
         bool lended; */}
-        <div className="flex   justify-between items-center mr-10">
+        <div className="flex   justify-between items-center mr-10 mb-2">
           <div className="flex flex-col items-center gap-2">
             <h2>Loan</h2>
             <p  className="text-green-500 "><span className="mr-2">{Number(element.tokenAmountToBorrow)/10**18}</span>CELO  </p>
@@ -186,6 +192,12 @@ const RepayDashBoardCardMarket = () => {
           </div>
           <div className="flex flex-col items-center gap-2">
             <h2>
+              Paid
+            </h2>
+            <p className="">{element._repaid? <h2 className="text-green-600">Settled</h2>:<h2 className="text-orange-600">Outstanding</h2>}</p>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <h2>
               Status
             </h2>
             <p className="">{!element.lended? <h2 className="text-red-600">Inactive</h2>:<h2 className="text-green-600">Active</h2>}</p>
@@ -198,7 +210,7 @@ const RepayDashBoardCardMarket = () => {
               
               
               <div className="flex justify-end items-center ">
-              <button onClick={()=>{handleRepay(index,Number(element.collateralAmount ),Number(element.interest ))}}  className="border text-[#FFFFFF] bg-[#0D46D7] w-20  rounded-md">Repay</button>
+              <button onClick={()=>{handleRepay(Number(element._poolId),element.tokenAmountToBorrow,element.interest)}}  className="border text-[#FFFFFF] bg-[#0D46D7] w-20  rounded-md">Repay</button>
               </div>
               
             </div>

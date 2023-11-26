@@ -297,7 +297,7 @@ setTimeout(() => {
               <div className="flex   justify-between items-center mr-10">
           <div className="flex flex-col items-center gap-2">
             <h2>Loan</h2>
-            <p  className="text-green-500 "><span className="mr-2">{Number(element.tokenAmountToBorrow)/10**18}</span>Matic  </p>
+            <p  className="text-green-500 "><span className="mr-2">{Number(element.tokenAmountToBorrow)/10**18}</span>CELO </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <h2 className="text-black">Duration</h2>
@@ -306,7 +306,7 @@ setTimeout(() => {
           <div className="flex flex-col items-center gap-2">
             <h2>Interest</h2>
             <p className="text-green-500"><span className=" mr-2">{Number(element.interest
-)/10**18}</span> Matic</p>
+)/10**18}</span>CELO </p>
           </div>
         </div>
               
