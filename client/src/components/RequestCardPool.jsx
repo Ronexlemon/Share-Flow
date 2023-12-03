@@ -7,6 +7,7 @@ import LendingAbi from "../Abis/LendingV2.json"
 import IERC20 from "../Abis/IERC20.json"
 import ToastIT from "./Toast";
 import { ToastContainer } from "react-toastify";
+import ToastError from "./ToastError";
 
 const RequestCardPool = () => {
 const [toasttoggole,setToastToggle] = useState(false);
@@ -15,12 +16,12 @@ const [toasttoggole,setToastToggle] = useState(false);
   const [hidebutton,setHide] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [indexValue,setIndexValue] = useState();
-  const [loanamount,setLoanAmount] = useState();
+  const [loanamount,setLoanAmount] = useState(null);
   const [showLendingModal, setShowLendingModal] = useState(false);
-  const [duration,setDuration]= useState();
-  const [tokenAmount,setTokenAmount] = useState();
-  const [collateralAmount,setCollateralAmount] = useState();
-  const [interestAmount,setInterestAmount] = useState();
+  const [duration,setDuration]= useState(null);
+  const [tokenAmount,setTokenAmount] = useState(null);
+  const [collateralAmount,setCollateralAmount] = useState(null);
+  const [interestAmount,setInterestAmount] = useState(null);
   const fantom = "0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9";//celo
   const FantomPricefeed = "0x022F9dCC73C5Fb43F2b4eF2EF9ad3eDD1D853946" //celoPriceFeed
   const link = "0x874069fa1eb16d44d622f2e0ca25eea172369bc1" //link"0x32E08557B14FaD8908025619797221281D439071"; //cusd /link
@@ -214,16 +215,26 @@ const [toasttoggole,setToastToggle] = useState(false);
     ToastIT("Lending ...",true);
   }
   const handleApproveRequest = async()=>{
-    
+    console.log("collateralAmount:", collateralAmount);
+console.log("loanamount:", tokenAmount);
+console.log("interestAmount:", interestAmount);
+console.log("duration:", duration);
+    if(collateralAmount != null && tokenAmount != null && interestAmount != null && duration != null){
       ToastIT("Approving...",false);
     
    
-     await approve();
-setTimeout(() => {
-  setHide(false);
-  ToastIT("Done",true);
-  
-}, 5000);
+      await approve();
+ setTimeout(() => {
+   setHide(false);
+   ToastIT("Done",true);
+   
+ }, 5000);
+    }
+    else{
+      ToastError("Please Fill all the inputs",false);
+    }
+    
+      
   }
 
   const handleSendRequest =async () => {
